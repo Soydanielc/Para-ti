@@ -275,7 +275,7 @@
 </head>
 <body>
 
-    <audio id="bg-music" loop>
+    <audio id="bg-music" preload="auto">
         <source src="./musica.mp3" type="audio/mpeg">
     </audio>
 
@@ -413,10 +413,19 @@
             }
         }
 
-        // Control de inicio de la experiencia
+       // Control de inicio de la experiencia
         function startExperience() {
             const music = document.getElementById('bg-music');
-            music.play().catch(e => console.log("Audio play blocked:", e));
+            
+            // Forzamos al navegador a reconocer la interacción de audio
+            music.volume = 1.0; 
+            
+            // Intentamos reproducir el archivo
+            music.play().then(() => {
+                console.log("Audio reproduciéndose correctamente.");
+            }).catch(e => {
+                console.log("Audio play blocked o requiere interacción directa:", e);
+            });
 
             const welcome = document.getElementById('welcome-screen');
             const terminal = document.getElementById('main-terminal');
