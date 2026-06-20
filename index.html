@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para: Lariannys Franco</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --yellow-primary: #FFD700;
+            --yellow-glow: #FFE14D;
+            --bg-dark: #0a0b10;
+            --card-bg: rgba(20, 22, 35, 0.75);
+            --text-light: #f0f2f5;
+            --text-muted: #a0a5b5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Fondo de Estrellas */
+        #stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle linear infinite;
+        }
+
+        .star.yellow-star {
+            background-color: var(--yellow-glow);
+            box-shadow: 0 0 4px var(--yellow-primary);
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        /* Contenedor Principal */
+        .terminal-container {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 650px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            border-radius: 16px;
+            padding: 30px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.05);
+        }
+
+        /* Estilo Bitácora / Militar */
+        .system-header {
+            font-family: 'Share Tech Mono', monospace;
+            color: var(--yellow-primary);
+            font-size: 0.9rem;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+            padding-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .text-stream {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            min-height: 200px;
+            margin-bottom: 30px;
+            white-space: pre-line;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 8px;
+            height: 18px;
+            background-color: var(--yellow-primary);
+            animation: blink 0.8s infinite;
+            vertical-align: middle;
+            margin-left: 4px;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        /* Botón de Acción Principal */
+        .action-btn {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            background-color: var(--yellow-primary);
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: none;
+            margin: 0 auto;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .action-btn:hover {
+            background-color: #fff;
+            box-shadow: 0 4px 25px rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Panel Final / Carta Abierta */
+        .final-envelope {
+            display: none;
+            animation: fadeIn 1s forwards;
+            border-top: 1px dashed rgba(255, 215, 0, 0.3);
+            padding-top: 25px;
+            margin-top: 20px;
+        }
+
+        .final-envelope h2 {
+            color: var(--yellow-primary);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            margin-top: 30px;
+            font-family: 'Share Tech Mono', monospace;
+            text-align: right;
+            color: var(--yellow-primary);
+            font-size: 1.1rem;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="stars-container"></div>
+
+    <div class="terminal-container">
+        <div class="system-header">
+            <span>TRANSMISIÓN ENTRANTE // REF: 20-06</span>
+            <span>05:14 A.M.</span>
+        </div>
+        
+        <div class="text-stream" id="message-box"></div>
+        
+        <button class="action-btn" id="next-trigger" onclick="revealFinalPart()">ABRIR TRANSMISIÓN FINAL</button>
+
+        <div class="final-envelope" id="final-panel">
+            <h2>Sinceramente...</h2>
+            <p>Me encantaría que compartieras este sentimiento... me encantaría decirle al mundo lo que siento por ti. Con palabras directas, y con los nervios y el corazón a mil por hora, pues... quisiera tener una relación contigo.</p>
+            <br>
+            <p>Me encantaría compartir una parte, o gran parte, de mi vida contigo; realmente deseo eso. No sé si estoy 100% preparado, pero lo que sí sé es que mis sentimientos son reales y quisiera que lo sepas.</p>
+            
+            <div class="signature">
+                Atte: Daniel Cadena<br>
+                para: Lariannys Franco
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generador de estrellas de fondo (Estilo Estelar)
+        function createStars() {
+            const container = document.getElementById('stars-container');
+            const count = 120;
+            for (let i = 0; i < count; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                if (Math.random() > 0.6) star.classList.add('yellow-star'); // Toques amarillos
+                
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(star);
+            }
+        }
+
+        // Texto de la primera parte
+        const textToType = `Me gustas. Quisiera sonar más poético, pero simplemente me gustas.
+
+He tratado de decírtelo estos días, pero los nervios me ganan; mi mente se nubla al estar cerca de ti y pensar en eso. Sinceramente, el simple hecho de pensar que estamos a solas es suficiente para no pensar en nada más que en ti.
+
+Hubiera querido decírtelo antes, pero mi mente me saboteaba; de hecho, más de una vez mis mensajes eliminados eran diciéndote lo que siento. Sinceramente no sé si verás esto, pero de ser así... bendito sea Dios, solo él permitirá que no me arrepienta después.
+
+En fin, deseo que conozcas este sentimiento. No quisiera que todo terminara sin hacer el intento. No sé si sea lo correcto o lo mejor en este momento; mi mente me recalca mi situación actual, pero... sé que me arrepentiré en el futuro si no lo intento una vez más.
+
+Mmm... me desvié. Quisiera recalcar que, bueno, me encantas. Eres única, bella, hermosa, preciosa... eres especial para mí. Me encanta cuando sonríes; de hecho, me fascina escucharte. Cuando cantas, mi oído desvía toda su atención hacia tu voz. Me gusta estar cerca de ti, ya que, a pesar de que no puedo pensar en muchas cosas, me siento en paz...`;
+
+        let index = 0;
+        const box = document.getElementById('message-box');
+
+        // Efecto de escritura manual secuencial (Typewriter)
+        function typeEffect() {
+            if (index < textToType.length) {
+                if(textToType.charAt(index) === '\n') {
+                    box.innerHTML += '<br>';
+                } else {
+                    box.innerHTML += textToType.charAt(index);
+                }
+                index++;
+                // Velocidad de tipeo ajustable
+                setTimeout(typeEffect, 25);
+            } else {
+                // Al terminar, remueve cursor y muestra el botón interactivo
+                box.innerHTML += '<span class="cursor"></span>';
+                document.getElementById('next-trigger').style.display = 'block';
+            }
+        }
+
+        function revealFinalPart() {
+            document.getElementById('next-trigger').style.display = 'none';
+            const cursors = document.getElementsByClassName('cursor');
+            if(cursors.length > 0) cursors[0].style.display = 'none';
+            
+            document.getElementById('final-panel').style.display = 'block';
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+
+        // Inicializar
+        window.onload = () => {
+            createStars();
+            setTimeout(typeEffect, 1000); // Pequeño retraso inicial dramático
+        };
+    </script>
+</body>
+</html>
