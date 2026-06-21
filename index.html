@@ -450,32 +450,7 @@
 
        // Control de inicio de la experiencia
         function startExperience() {
-            const music = document.getElementById('bg-music');
-            const musicBtn = document.getElementById('music-toggle');
-            
-            let musicEnabled = true;
-            
-            function toggleMusic(){
-            
-                if(music.paused){
-            
-                    music.play();
-            
-                    musicBtn.innerHTML =
-                    '<i class="fa-solid fa-volume-high"></i>';
-            
-                    musicBtn.classList.remove('muted');
-            
-                }else{
-            
-                    music.pause();
-            
-                    musicBtn.innerHTML =
-                    '<i class="fa-solid fa-volume-xmark"></i>';
-            
-                    musicBtn.classList.add('muted');
-                }
-            }
+            music.play().catch(()=>{});
 
             const welcome = document.getElementById('welcome-screen');
             const terminal = document.getElementById('main-terminal');
@@ -501,18 +476,24 @@
             }, 100);
         }
         
-        function toggleAudio() {
-            if (isPlaying) {
-                music.pause();
-                playPauseBtn.innerText = 'Reproducir';
-            } else {
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+            
+        let musicEnabled = true;
+            
+        function toggleMusic(){
+            
+            if(music.paused){
                 music.play();
-                playPauseBtn.innerText = 'Pausar';
+                musicBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                musicBtn.classList.remove('muted');
+                }else{
+                music.pause();
+                musicBtn.innerHTML ='<i class="fa-solid fa-volume-xmark"></i>';
+                musicBtn.classList.add('muted');
+                }
             }
-            isPlaying = !isPlaying;
-        }
         
-
         window.onload = buildSpace;
     </script>
 </body>
