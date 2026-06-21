@@ -303,7 +303,7 @@
 </head>
 <body>
 
-    <audio id="bg-music" preload="auto">
+    <audio id="bg-music" preload="auto" loop>
         <source src="./musica.mp3" type="audio/mpeg">
     </audio>
 
@@ -392,9 +392,10 @@
         const box = document.getElementById('message-box');
         const nextBtn = document.getElementById('next-trigger');
         let currentDiv = null;
-        let music = document.getElementById('bg-music');
-        let playPauseBtn = document.getElementById('play-pause');
-        let isPlaying = false;
+        
+        // Elementos globales de audio unificados
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
 
         // Efecto Typewriter para el párrafo activo
         function typeParagraph() {
@@ -475,24 +476,18 @@
                 window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
             }, 100);
         }
-        
-        const music = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-toggle');
-            
-        let musicEnabled = true;
             
         function toggleMusic(){
-            
             if(music.paused){
                 music.play();
                 musicBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
                 musicBtn.classList.remove('muted');
-                }else{
+            } else {
                 music.pause();
-                musicBtn.innerHTML ='<i class="fa-solid fa-volume-xmark"></i>';
+                musicBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
                 musicBtn.classList.add('muted');
-                }
             }
+        }
         
         window.onload = buildSpace;
     </script>
