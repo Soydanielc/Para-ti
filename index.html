@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Diario Oculto Estelar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap');
 
@@ -62,6 +63,33 @@
         @keyframes twinkle {
             0%, 100% { opacity: 0.2; }
             50% { opacity: 1; }
+        }
+
+        #music-toggle{
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(18,18,28,.55);
+            color: #ffd86b;
+            font-size: 20px;
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            z-index: 9999;
+            transition: .25s;
+        }
+        
+        #music-toggle:hover{
+            transform: scale(1.08);
+            background: rgba(30,30,50,.8);
+            box-shadow: 0 0 18px rgba(255,216,107,.5);
+        }
+        
+        #music-toggle.muted{
+            color:#888;
         }
 
         /* PANTALLA DE INICIO */
@@ -278,8 +306,14 @@
     <audio id="bg-music" preload="auto">
         <source src="./musica.mp3" type="audio/mpeg">
     </audio>
+    
+    <audio id="bg-music" preload="auto">
+        <source src="https://drive.google.com/uc?id=1V-dmwjqbCqYt0dPaEdzBn4MlsP3VY_8T" type="audio/mpeg">
+    </audio>
 
-    <button id="play-pause" onclick="toggleAudio()">Reproducir/Pausar</button>
+    <button id="music-toggle" onclick="toggleMusic()">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
 
     <div id="space-container"></div>
 
