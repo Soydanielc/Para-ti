@@ -451,16 +451,31 @@
        // Control de inicio de la experiencia
         function startExperience() {
             const music = document.getElementById('bg-music');
+            const musicBtn = document.getElementById('music-toggle');
             
-            // Forzamos al navegador a reconocer la interacción de audio
-            music.volume = 1.0; 
+            let musicEnabled = true;
             
-            // Intentamos reproducir el archivo
-            music.play().then(() => {
-                console.log("Audio reproduciéndose correctamente.");
-            }).catch(e => {
-                console.log("Audio play blocked o requiere interacción directa:", e);
-            });
+            function toggleMusic(){
+            
+                if(music.paused){
+            
+                    music.play();
+            
+                    musicBtn.innerHTML =
+                    '<i class="fa-solid fa-volume-high"></i>';
+            
+                    musicBtn.classList.remove('muted');
+            
+                }else{
+            
+                    music.pause();
+            
+                    musicBtn.innerHTML =
+                    '<i class="fa-solid fa-volume-xmark"></i>';
+            
+                    musicBtn.classList.add('muted');
+                }
+            }
 
             const welcome = document.getElementById('welcome-screen');
             const terminal = document.getElementById('main-terminal');
