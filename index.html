@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario Oculto Estelar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <audio id="bg-music" preload="auto" loop>
+        <source src="./musica.mp3" type="audio/mpeg">
+    </audio>
+
+    <button id="music-toggle" onclick="toggleMusic()">
+        <i class="fa-solid fa-volume-high"></i>
+    </button>
+
+    <div id="space-container"></div>
+
+    <div id="welcome-screen">
+        <svg class="constellation-svg" viewBox="0 0 100 100">
+            <path class="pulse-line" d="M 50 35 L 30 15 L 10 35 L 50 85 L 90 35 L 70 15 Z" fill="none" stroke-width="0.6"/>
+            <path class="pulse-line" d="M 30 15 L 50 35 L 70 15" fill="none" stroke-width="0.4"/>
+            <path class="pulse-line" d="M 10 35 L 50 35 L 90 35" fill="none" stroke-width="0.4"/>
+            
+            <circle class="star-node" cx="50" cy="35" r="2" />
+            <circle class="star-node y-node" cx="30" cy="15" r="1.5" />
+            <circle class="star-node" cx="10" cy="35" r="1.8" />
+            <circle class="star-node y-node" cx="50" cy="85" r="2.3" />
+            <circle class="star-node" cx="90" cy="35" r="1.8" />
+            <circle class="star-node y-node" cx="70" cy="15" r="1.5" />
+        </svg>
+
+        <h1 class="title-estelar">Diario Oculto Estelar</h1>
+        <p class="subtitle-estelar">+ Página encontrada de la colección escondida +</p>
+        <p class="desc-estelar">Hay fragmentos del universo que solo se alinean una vez. Activa el receptor cuántico para leer la bitácora guardada.</p>
+        
+        <button class="primary-btn" onclick="startExperience()">Abrir Mensaje</button>
+    </div>
+
+    <div class="terminal-container" id="main-terminal">
+        <div class="system-header">
+            <span>TRANSMISIÓN ENTRANTE // REF: 20-06</span>
+            <span>05:14 A.M.</span>
+        </div>
+        
+        <div class="text-stream" id="message-box"></div>
+        
+        <button class="action-btn" id="next-trigger" onclick="advanceParagraph()">Siguiente fragmento</button>
+
+        <div class="final-envelope" id="final-panel">
+            <h2>Sinceramente...</h2>
+            <p>Me encantaría que compartieras este sentimiento... no se si eso sea asi, preferiría no asumirlo, quisiera que puedas disfrutar de esta pagina, tal vez empiece a subir ciertas cosas y a hacer algunas otras con la misma, cosas me que encantaría que vieras y supieras que hago pensando en ti.</p>
+            <br>
+            <div class="signature">
+                Atte: Daniel Cadena.<br>
+                Para: Lariannys Franco.
+            </div>
+
+            <button class="return-btn" onclick="resetExperience()">
+                <i class="fa-solid fa-rotate-left"></i> Volver al centro de mensajes
+            </button>
+        </div>
+    </div>
+
+    <button id="open-sidebar-btn" onclick="toggleSidebar(true)">
+        <i class="fa-solid fa-feather-pointed"></i> Poesías
+    </button>
+
+    <div id="sidebar-poemas" class="sidebar">
+        <button class="close-btn" onclick="toggleSidebar(false)">&times;</button>
+        
+        <div class="sidebar-content">
+            <h2 class="title-poesia">Poesía</h2>
+            <p class="desc-poesia">Este apartado será dedicado a los poemas que quisiera dedicarte, algunos son originarios de mi persona y otros simplemente los vi bonitos en el internet y quisiera dedicártelos.</p>
+            
+            <div id="cards-container" class="cards-grid">
+                <p class="loading-text">Buscando fragmentos en la base de datos...</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="notebook-modal" class="modal">
+        <div class="notebook-container">
+            <button class="close-notebook" onclick="closeNotebook()">&times;</button>
+            <div class="notebook-paper">
+                <h1 id="notebook-title"></h1>
+                <div id="notebook-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="script.js"></script>
+</body>
+</html>
