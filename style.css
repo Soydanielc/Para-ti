@@ -454,6 +454,8 @@ position: fixed;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     border-left: 3px solid #FFD700;
     padding: 30px;
+    max-height: 90vh;
+    overflow-y: scroll;
 }
 
 #notebook-title {
